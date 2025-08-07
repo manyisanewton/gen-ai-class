@@ -283,3 +283,291 @@ path('post/<int:pk>/', views.post_detail, name='post_detail'),
     <p>{{ post.body|truncatechars:200 }}</p>
   </div>
 {% endfor %}
+
+## 🤖 AI Prompt Journal
+
+Throughout this capstone, I used **ChatGPT** (Generative AI) as a learning assistant and debugging partner while building the Django project.
+
+Below are selected prompts and how they helped during each stage:
+
+---
+
+### 🔹 Day 1–3: Project Setup & Models
+
+**Prompt:**
+
+> What is Django and how can I use it for web development?
+
+**Response:**  
+Helped me understand Django’s architecture (MVT), and how to set up a project using `django-admin startproject` and create apps using `startapp`.
+
+---
+
+**Prompt:**
+
+> How do I define a Post model and make migrations?
+
+**Response:**  
+Guided me to create `models.py`, use `makemigrations` and `migrate` to create the database tables.
+
+---
+
+### 🔹 Day 4–6: Admin, Views, and Templates
+
+**Prompt:**
+
+> How do I register a model in the Django admin panel?
+
+**Response:**  
+Helped me write `admin.site.register(Post)` and customize admin fields for better readability.
+
+---
+
+**Prompt:**
+
+> TemplateDoesNotExist error when rendering post_list.html
+
+**Response:**  
+Explained how to structure `templates/`, configure `DIRS` in settings, and fix path issues.
+
+---
+
+### 🔹 Day 7–8: Static, Media & Forms
+
+**Prompt:**
+
+> How do I upload and display images with a Django model?
+
+**Response:**  
+Helped me set up `ImageField`, install `Pillow`, configure `MEDIA_URL` and `MEDIA_ROOT`, and serve images in templates.
+
+---
+
+**Prompt:**
+
+> How do I create and use ModelForms for user input?
+
+**Response:**  
+Showed how to use `forms.ModelForm` for the comment system and handle POST requests in views.
+
+---
+
+### 🔹 Day 9+: Debugging & Fixes
+
+**Prompt:**
+
+> NoReverseMatch: Reverse for 'post_detail' not found
+
+**Response:**  
+Helped me check `name=` values in `urls.py` and make sure `redirect()` used the correct name.
+
+---
+
+**Prompt:**
+
+> Why does Django say “.forms could not be resolved”?
+
+**Response:**  
+Helped me check import paths, confirm the file existed, and adjust `from blog.forms import CommentForm`.
+
+---
+
+### 💡 How AI Helped
+
+- 📚 Explained confusing errors step-by-step
+- 🧠 Helped me learn Django fundamentals like views, forms, templates
+- 🛠️ Debugged real-time issues with code context
+- 📄 Helped write documentation for this toolkit
+
+---
+
+> Using AI made the learning process faster, less frustrating, and more engaging — like having a Python expert by my side every day.
+
+## 🐛 Common Issues & Fixes
+
+During the development of this Django blog project, I faced several errors and bugs. Below is a list of those issues and how I resolved them using AI support and documentation.
+
+---
+
+### ❌ Issue 1: `django.core.exceptions.ImproperlyConfigured: Cannot use ImageField because Pillow is not installed`
+
+**Fix:**  
+Installed the Pillow package using:
+
+```bash
+pip install Pillow
+```
+
+# ❌ Issue 2: TemplateDoesNotExist: blog/post_list.html
+
+# Fix:
+
+#
+
+# Created a templates/blog/post_list.html file
+
+#
+
+# Ensured that the TEMPLATES setting in settings.py included this:
+
+#
+
+# ```python
+
+# 'DIRS': [BASE_DIR / 'templates'],
+
+# ```
+
+#
+
+# Confirmed that the blog app template was placed in templates/blog/ folder.
+
+# ❌ Issue 3: Reverse for 'post_detail' not found
+
+# Fix:
+
+# The name used in the redirect() function or {% url %} tag didn’t match the name in urls.py.
+
+#
+
+# Corrected URL path:
+
+#
+
+# ```python
+
+# path('post/<int:pk>/', views.post_detail, name='post_detail'),
+
+# ```
+
+#
+
+# And updated redirect() and {% url 'post_detail' post.pk %} to match.
+
+# ❌ Issue 4: .forms could not be resolved
+
+# Fix:
+
+#
+
+# Verified that forms.py existed in the blog/ folder.
+
+#
+
+# Fixed import typo:
+
+#
+
+# ```python
+
+# from .forms import CommentForm
+
+# ```
+
+# ❌ Issue 5: 404 Error on /post/1/ even though post exists
+
+# Fix:
+
+# I realized I was trying to visit /post/1/ while my app URL was set to /blog/post/1/.
+
+#
+
+# Corrected by using the full path:
+
+#
+
+# ```text
+
+# http://127.0.0.1:8000/blog/post/1/
+
+# ```
+
+# ❌ Issue 6: Media files not displaying
+
+# Fix:
+
+#
+
+# Made sure I had these in settings.py:
+
+#
+
+# ```python
+
+# MEDIA_URL = '/media/'
+
+# MEDIA_ROOT = BASE_DIR / 'media'
+
+# ```
+
+#
+
+# Added this to urls.py:
+
+#
+
+# ```python
+
+# from django.conf import settings
+
+# from django.conf.urls.static import static
+
+#
+
+# if settings.DEBUG:
+
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# ```
+
+#
+
+# Confirmed that uploaded images went into the /media/post_images/ folder.
+
+## 📚 Additional Resources
+
+Here are the references and learning resources that supported my Django journey and helped build this beginner’s toolkit:
+
+---
+
+### 🔗 Official Documentation
+
+- [Django Documentation](https://docs.djangoproject.com/en/stable/)  
+  The official guide for everything Django, including models, views, forms, templates, and deployment.
+
+- [Django Model Field Reference](https://docs.djangoproject.com/en/stable/ref/models/fields/)  
+  Helped me define fields like `CharField`, `TextField`, and `ImageField`.
+
+- [Django Admin Site Guide](https://docs.djangoproject.com/en/stable/ref/contrib/admin/)  
+  Used to configure and customize the admin dashboard for managing posts and comments.
+
+---
+
+### 🛠 Tools Used
+
+- **Python 3.8**
+- **Django 4.2**
+- **Pillow** – for image upload support
+- **SQLite3** – Django’s default development database
+- **VS Code** – code editor with Django extensions
+- **ChatGPT** – generative AI assistant for learning, debugging, and documentation support
+
+---
+
+### 🧠 Learning Platforms
+
+- [MDN Web Docs - Django Getting Started](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django)
+- [Real Python - Django Tutorials](https://realpython.com/tutorials/django/)
+- [DjangoGirls Tutorial](https://tutorial.djangogirls.org/) – beginner-friendly guide
+
+---
+
+### 💬 Community Forums
+
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/django)
+- [r/django on Reddit](https://www.reddit.com/r/django/)
+- [Django Discord Server](https://discord.gg/django)
+
+---
+
+> These resources helped me troubleshoot errors, understand concepts, and extend features in my blog app. They are also great for anyone looking to deepen their Django skills.
