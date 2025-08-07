@@ -67,14 +67,6 @@ genai-django-blog/
 
 ---
 
-## 🖥️ Screenshots
-
-> 📸 Add the following screenshots:
-- Blog homepage
-- Post detail view
-- Admin panel
-- Comment form submission
-- Folder structure and terminal
 
 ---
 
@@ -131,12 +123,9 @@ python manage.py runserver
 
 You can deploy this project on:
 - [Render](https://render.com/)
-- [Railway](https://railway.app/)
-- [PythonAnywhere](https://www.pythonanywhere.com/)
 
-Instructions can be provided if needed.
 
----
+
 
 ## 🏁 Conclusion
 
